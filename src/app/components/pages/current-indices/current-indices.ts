@@ -11,7 +11,7 @@ import { IndexData } from '../../../services/indices/index-data';
 })
 export class CurrentIndices {
 
-  constructor(public indexData: IndexData) {}
+  constructor(private indexData: IndexData) {}
 
   ngOnInit(): void {
     this.indexData.loadAll();

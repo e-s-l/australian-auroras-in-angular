@@ -1,1 +1,152 @@
-<p>current-alerts works!</p>
+<main class="container my-4 p-4 bg-light rounded shadow">
+    <h2 class="mb-4 pb-2 border-bottom border-primary text-primary fw-bold">
+        Current Alerts
+    </h2>
+
+    <div class="container my-4">
+
+    <p *ngIf="!hasAlerts" class="text-muted fst-italic">
+        No Alerts or Warnings.
+    </p>
+
+    <div *ngIf="magWarnings.length > 0">
+        <div
+            *ngFor="let warning of magWarnings"
+            class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-danger cursor-pointer"
+            (click)="openDetails(warning)"
+            tabindex="0"
+            role="button"
+            (keyup.enter)="openDetails(warning)"
+            (keyup.space)="openDetails(warning)">
+            <h4 class="text-danger fw-semibold mb-2">Magnetic Warning</h4>
+            <p 
+            *ngIf="warning.issue_time"
+            class="mb-1"><strong>Issued:</strong> {{ warning.issue_time }}</p>
+            <p 
+            *ngIf="warning.start_date"
+            class="mb-1"><strong>Start Date:</strong> {{ warning.start_date }}</p>
+            <p
+            *ngIf="warning.end_date"
+            class="mb-1"><strong>End Date:</strong> {{ warning.end_date }}</p>
+            <p 
+            *ngIf="warning.cause"
+            class="mb-1"><strong>Cause:</strong> {{ warning.cause }}</p>
+            <p
+            class="mb-1"><strong>Activity Forecast:</strong></p>
+            <ul class="mb-1 ps-4">
+            <li *ngFor="let day of warning.activity">
+                <strong>{{ day.date }}:</strong> {{ day.forecast }}
+            </li>
+            </ul>
+            <p
+            *ngIf warning.comments 
+            class="mb-0"><strong>Comments:</strong> {{ warning.comments }}</p>
+        </div>
+    </div>
+
+    <div *ngIf="auroraWatches.length > 0">
+        <div
+        *ngFor="let watch of auroraWatches"
+        class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-info cursor-pointer"
+        (click)="openDetails(watch)"
+        tabindex="0"
+        role="button"
+        (keyup.enter)="openDetails(watch)"
+        (keyup.space)="openDetails(watch)"
+        >
+            <h4 class="text-info fw-semibold mb-2">Aurora Watch</h4>
+            <p 
+            *ngIf="watch.issue_time"
+            class="mb-1"><strong>Issued:</strong> {{ watch.issue_time }}</p>
+            <p 
+            *ngIf="watch.start_date"
+            class="mb-1"><strong>Start Date:</strong> {{ watch.start_date }}</p>
+            <p
+            *ngIf="watch.end_date"
+            class="mb-1"><strong>End Date:</strong> {{ watch.end_date }}</p>
+            <p 
+            *ngIf="watch.cause"
+            class="mb-1"><strong>Cause:</strong> {{ watch.cause }}</p>
+            <p
+            *ngIf="watch.k_aus"
+            class="mb-1"><strong>Expected K Index:</strong> {{ watch.k_aus }}</p>
+            <p 
+            *ngIf="watch.lat_band"
+            class="mb-1"><strong>Latitude Band:</strong> {{ watch.lat_band }}</p>
+            <p 
+            *ngIf="watch.comments"
+            class="mb-0"><strong>Comments:</strong> {{ watch.comments }}</p>
+        </div>
+    </div>
+
+    <div *ngIf="auroraOutlooks.length > 0"></div>
+        <div
+            *ngFor="let outlook of auroraOutlooks"
+            class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-success cursor-pointer"
+            (click)="openDetails(outlook)"
+            tabindex="0"
+            role="button"
+            (keyup.enter)="openDetails(outlook)"
+            (keyup.space)="openDetails(outlook)">
+                <h4 class="text-success fw-semibold mb-2">Aurora Outlook</h4>
+                <p
+                *ngIf="outlook.issue_time"
+                class="mb-1"><strong>Issued:</strong> {{ outlook.issue_time }}</p>
+                <p
+                *ngIf="outlook.start_date"
+                class="mb-1">
+                    <strong>Start Date:</strong> {{ outlook.start_date }}
+                </p>
+                <p 
+                *ngIf="outlook.end_date"
+                class="mb-1">
+                    <strong>End Date:</strong> {{ outlook.end_date }}
+                </p>
+                <p
+                *ngIf="outlook.cause"
+                class="mb-1">
+                    <strong>Cause:</strong> {{ outlook.cause }}
+                </p>
+                <p 
+                *ngIf="outlook.k_aus !== undefined"
+                class="mb-1">
+                    <strong>Expected K Index:</strong> {{ outlook.k_aus }}
+                </p>
+                <p 
+                *ngIf="outlook.lat_band"
+                class="mb-1"><strong>Latitude Band:</strong> {{ outlook.lat_band }}</p>
+                <p 
+                *ngIf="outlook.comments"
+                class="mb-0">
+                    <strong>Comments:</strong> {{ outlook.comments }}
+                </p>
+        </div>
+    </div>
+
+  <div *ngIf="magAlerts.length > 0">
+    <h3 class="text-danger mt-4">Magnetic Alert</h3>
+    <div
+      *ngFor="let alert of magAlerts"
+      class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-warning">
+      <p class="mb-1"><strong>Start Time:</strong> {{ alert.start_time }}</p>
+      <p class="mb-1"><strong>Valid Until:</strong> {{ alert.valid_until }}</p>
+      <p class="mb-1"><strong>G Scale:</strong> G{{ alert.g_scale }}</p>
+      <p class="mb-0"><strong>Description:</strong> {{ alert.description }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="auroraAlerts.length > 0">
+    <h3 class="text-primary mt-4">Aurora Alert</h3>
+    <div
+      *ngFor="let alert of auroraAlerts"
+      class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-info">
+      <p class="mb-1"><strong>Start Time:</strong> {{ alert.start_time }}</p>
+      <p class="mb-1"><strong>Valid Until:</strong> {{ alert.valid_until }}</p>
+      <p class="mb-1"><strong>K Index (AUS):</strong> {{ alert.k_aus }}</p>
+      <p class="mb-1"><strong>Latitude Band:</strong> {{ alert.lat_band }}</p>
+      <p class="mb-0"><strong>Description:</strong> {{ alert.description }}</p>
+    </div>
+  </div>
+
+
+</main>

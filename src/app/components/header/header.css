@@ -1,0 +1,9 @@
+
+@keyframes flash-bg {
+  50% { background-color: red; }
+}
+
+.bg-warning-flash {
+  animation: flash-bg 0.5s 3;
+  color: #black !important;
+}
