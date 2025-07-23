@@ -4,10 +4,11 @@ import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { IndexData } from './services/indices/index-data';
 import { AlertData } from './services/alerts/alert-data';
+import { ModalComponent } from './components/modal/modal';
 
 @Component({
   selector: 'app-root',
-  imports: [ RouterOutlet, Header, Footer ],
+  imports: [ RouterOutlet, Header, Footer, ModalComponent ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

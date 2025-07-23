@@ -2,11 +2,11 @@
     *ngIf="entry"
     class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-info
         cursor-pointer"
-    (click)="openDetails()"
+    (click)="openDetails(entry)"
     tabindex="0"
     role="button"
-    (keyup.enter)="openDetails()"
-    (keyup.space)="openDetails()"
+    (keyup.enter)="openDetails(entry)"
+    (keyup.space)="openDetails(entry)"
     >
   <h3 class="text-info fw-semibold mb-2">
     {{name}} Index: <span class="text-secondary">{{ entry.index }}</span>

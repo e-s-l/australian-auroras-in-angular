@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModalService } from '../../services/modals/modal';
 
 @Component({
   selector: 'app-index',
@@ -11,8 +12,16 @@ export class Index {
   @Input() name!: string;
   @Input() entry: any;
 
-  openDetails() {
-    console.log("details requested", this.entry);
+  constructor(
+    private modal: ModalService
+  ) {}
+
+  openDetails(entry: any) {
+    this.modal.open({
+      title: `${this.name} Index Details`,
+      entry,
+      notes: 'This data was retrieved from the Bureau of Meteorology API.'
+    });
   }
 
 }

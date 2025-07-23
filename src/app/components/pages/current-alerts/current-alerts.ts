@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AlertData } from '../../../services/alerts/alert-data';
 import { AlertStateService } from '../../../services/alerts/alert-state';
 import { Observable } from 'rxjs';
+import { ModalService } from '../../../services/modals/modal';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class CurrentAlerts {
 
   constructor(
     private alertData: AlertData,
-    private alertState: AlertStateService
+    private alertState: AlertStateService,
+    private modal: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +36,11 @@ export class CurrentAlerts {
 
 
   openDetails(entry: any) {
-    console.log(`clicked ${entry}`)
+    this.modal.open({
+      title: `Details`,
+      entry,
+      notes: 'This data was retrieved from the Bureau of Meteorology API.'
+    });
   }
 
 }

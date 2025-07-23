@@ -1,0 +1,25 @@
+
+<div
+  class="modal fade show d-block"
+  tabindex="-1"
+  *ngIf="modal.isOpen | async"
+  style="background-color: rgba(0,0,0,0.5)"
+  (click)="onBackdropClick()"
+>
+    <div class="modal-dialog modal-lg modal-dialog-centered"
+    (click)="$event.stopPropagation()"
+    >
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">{{ (modal.content | async)?.title || 'Details' }}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.close()"></button>
+        </div>
+        <div class="modal-body" *ngIf="(modal.content | async) as content">
+        <div *ngIf="content.notes" class="mb-3 text-muted">
+            <strong>Notes:</strong> {{ content.notes }}
+        </div>
+        <pre class="bg-light p-3 rounded"><code>{{ content.entry | json }}</code></pre>
+        </div>
+    </div>
+    </div>
+</div>
