@@ -1,0 +1,28 @@
+<header class="bg-secondary text-white p-4 rounded mb-4 shadow-sm">
+  <h1 class="display-4">{{ title }}</h1>
+  <p class="lead">Oh, heavens.</p>
+  
+  <ul class="nav nav-tabs mt-3">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/current-indices" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        Indices
+      </a>
+    </li>
+    <li class="nav-item">
+      <a 
+      class="nav-link" 
+      routerLink="/current-alerts" 
+      routerLinkActive="active" 
+      [routerLinkActiveOptions]="{exact:true}"
+      [class.bg-warning-flash]="hasAlerts"
+      >
+        Alerts
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/historic-indices" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        Historic
+      </a>
+    </li>
+  </ul>
+</header>
