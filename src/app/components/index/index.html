@@ -1,0 +1,17 @@
+<div
+    *ngIf="entry"
+    class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-info
+        cursor-pointer"
+    (click)="openDetails()"
+    tabindex="0"
+    role="button"
+    (keyup.enter)="openDetails()"
+    (keyup.space)="openDetails()"
+    >
+  <h3 class="text-info fw-semibold mb-2">
+    {{name}} Index: <span class="text-secondary">{{ entry.index }}</span>
+  </h3>
+  <p class="mb-0 text-muted">
+    Valid until <strong>{{ entry.valid_time }}</strong> + 3 hrs
+  </p>
+</div>

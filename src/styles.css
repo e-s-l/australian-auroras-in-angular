@@ -1,1 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+
+/* something to see while we wait */
+
+.loading {
+    animation: 1s infinite alternate fade-loader;
+}
+
+.loading span {
+    animation: 1s infinite alternate sweep-loader;
+}
+
+@keyframes fade-loader {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+
+@keyframes sweep-loader {
+  from {
+    translate: 0 0;
+    scale: 100% 1;
+  }
+
+  to {
+    translate: 50vw 0;
+    scale: 200% 1;
+  }
+}

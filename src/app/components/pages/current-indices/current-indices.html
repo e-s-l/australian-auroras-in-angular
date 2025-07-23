@@ -1,1 +1,17 @@
-<p>current-indices works!</p>
+<main class="container my-4 p-4 bg-light rounded shadow">
+    <h2 class="mb-4 pb-2 border-bottom border-primary text-primary fw-bold">
+        Current Indices
+    </h2>
+
+    <div *ngIf="kIndexEntries.length && aIndexEntries.length && dstIndexEntries.length && aIndexEntries[0]?.length && dstIndexEntries[0]?.length; else loading">
+        <app-index [name]="'K'" [entry]="kIndexEntries[0]"></app-index>
+        <app-index [name]="'A'" [entry]="aIndexEntries[0][0]"></app-index>
+        <app-index [name]="'DST'" [entry]="dstIndexEntries[0][0]"></app-index>
+    </div>
+
+</main>
+
+
+<ng-template #loading>
+    <p class="loading"><span>...</span>loading<span>...</span></p>
+</ng-template>
