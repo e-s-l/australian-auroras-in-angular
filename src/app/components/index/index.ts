@@ -11,16 +11,18 @@ import { ModalService } from '../../services/modals/modal';
 export class Index {
   @Input() name!: string;
   @Input() entry: any;
+  @Input() notes!: string; 
 
   constructor(
     private modal: ModalService
   ) {}
 
   openDetails(entry: any) {
+
     this.modal.open({
       title: `${this.name} Index Details`,
       entry,
-      notes: 'This data was retrieved from the Bureau of Meteorology API.'
+      notes: this.notes,
     });
   }
 

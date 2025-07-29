@@ -1,7 +1,10 @@
 <div
     *ngIf="entry"
-    class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-info
-        cursor-pointer"
+    class="mb-4 p-3 shadow-sm border-start border-4 cursor-pointer"
+    [ngClass]="[
+      'bg-white',
+      'border-info'
+    ]"
     (click)="openDetails(entry)"
     tabindex="0"
     role="button"
@@ -12,6 +15,6 @@
     {{name}} Index: <span class="text-secondary">{{ entry.index }}</span>
   </h3>
   <p class="mb-0 text-muted">
-    Valid until <strong>{{ entry.valid_time }}</strong> + 3 hrs
+    Valid until <strong>{{ entry.expires }}</strong>
   </p>
 </div>

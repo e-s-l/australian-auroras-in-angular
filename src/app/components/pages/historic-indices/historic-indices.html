@@ -3,5 +3,62 @@
         Historic Indices
     </h2>
 
-    <p>to do</p>
+    <form (ngSubmit)="loadHistoricData()">
+        <label class="mb-2">
+            Start Date:
+            <input type="date" [(ngModel)]="startDate" name="startDate" required>
+        </label>
+
+        <label class="mb-2">
+            End Date:
+            <input type="date" [(ngModel)]="endDate" name="endDate" required>
+        </label>
+
+        <div class="form-check form-check-inline">
+            <input 
+            class="form-check-input" 
+            type="checkbox" 
+            [(ngModel)]="showKIndex" 
+            name="showKIndex" 
+            id="showKIndex">
+            <label class="form-check-label" for="showKIndex">K Index</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input
+             class="form-check-input" 
+             type="checkbox" 
+             [(ngModel)]="showAIndex" 
+             name="showAIndex" 
+             id="showAIndex">
+            <label class="form-check-label" for="showAIndex">A Index</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input 
+            class="form-check-input" 
+            type="checkbox" 
+            [(ngModel)]="showDstIndex" 
+            name="showDstIndex" 
+            id="showDstIndex">
+            <label class="form-check-label" for="showDstIndex">Dst Index</label>
+        </div>
+
+
+        <button 
+        type="submit" 
+        [disabled]="!startDate || !endDate"
+        class="mb-2"
+        >Load</button>
+    </form>
+
+  <plotly-plot
+    *ngIf="plotData.length"
+    [data]="plotData"
+    [layout]="plotLayout"
+    [config]="plotConfig"
+    [useResizeHandler]="true"
+  ></plotly-plot>
+
+
 </main>

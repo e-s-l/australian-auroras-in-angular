@@ -5,7 +5,7 @@
 
     <div class="container my-4">
 
-    <p *ngIf="!hasAlerts" class="text-muted fst-italic">
+    <p *ngIf="!(hasAlerts | async) || hasAlerts === undefined" class="text-muted fst-italic">
         No Alerts or Warnings.
     </p>
 
@@ -13,11 +13,11 @@
         <div
             *ngFor="let warning of magWarnings"
             class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-danger cursor-pointer"
-            (click)="openDetails(warning)"
+            (click)="openDetails(warning, magWarningNotes)"
             tabindex="0"
             role="button"
-            (keyup.enter)="openDetails(warning)"
-            (keyup.space)="openDetails(warning)">
+            (keyup.enter)="openDetails(warning, magWarningNotes)"
+            (keyup.space)="openDetails(warning, magWarningNotes)">
             <h4 class="text-danger fw-semibold mb-2">Magnetic Warning</h4>
             <p 
             *ngIf="warning.issue_time"
@@ -48,11 +48,11 @@
         <div
         *ngFor="let watch of auroraWatches"
         class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-info cursor-pointer"
-        (click)="openDetails(watch)"
+        (click)="openDetails(watch, auroraWatchNotes)"
         tabindex="0"
         role="button"
-        (keyup.enter)="openDetails(watch)"
-        (keyup.space)="openDetails(watch)"
+        (keyup.enter)="openDetails(watch, auroraWatchNotes)"
+        (keyup.space)="openDetails(watch, auroraWatchNotes)"
         >
             <h4 class="text-info fw-semibold mb-2">Aurora Watch</h4>
             <p 
@@ -83,11 +83,11 @@
         <div
             *ngFor="let outlook of auroraOutlooks"
             class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-success cursor-pointer"
-            (click)="openDetails(outlook)"
+            (click)="openDetails(outlook, auroraOutlookNotes)"
             tabindex="0"
             role="button"
-            (keyup.enter)="openDetails(outlook)"
-            (keyup.space)="openDetails(outlook)">
+            (keyup.enter)="openDetails(outlook, auroraOutlookNotes)"
+            (keyup.space)="openDetails(outlook, auroraOutlookNotes)">
                 <h4 class="text-success fw-semibold mb-2">Aurora Outlook</h4>
                 <p
                 *ngIf="outlook.issue_time"
@@ -126,8 +126,12 @@
   <div *ngIf="magAlerts.length > 0">
     <h3 class="text-danger mt-4">Magnetic Alert</h3>
     <div
-      *ngFor="let alert of magAlerts"
-      class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-warning">
+    *ngFor="let alert of magAlerts"
+    class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-warning"
+    (click)="openDetails(alert, magAlertNotes)"
+    (keyup.enter)="openDetails(alert, magAlertNotes)"
+    (keyup.space)="openDetails(alert, magAlertNotes)"
+      >
       <p class="mb-1"><strong>Start Time:</strong> {{ alert.start_time }}</p>
       <p class="mb-1"><strong>Valid Until:</strong> {{ alert.valid_until }}</p>
       <p class="mb-1"><strong>G Scale:</strong> G{{ alert.g_scale }}</p>
@@ -138,8 +142,12 @@
   <div *ngIf="auroraAlerts.length > 0">
     <h3 class="text-primary mt-4">Aurora Alert</h3>
     <div
-      *ngFor="let alert of auroraAlerts"
-      class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-info">
+    *ngFor="let alert of auroraAlerts"
+    class="mb-4 p-3 bg-white shadow-sm border-start border-4 border-info"
+    (click)="openDetails(alert, auroraAlertNotes)"
+    (keyup.enter)="openDetails(alert, auroraAlertNotes)"
+    (keyup.space)="openDetails(alert, auroraAlertNotes)"
+      >
       <p class="mb-1"><strong>Start Time:</strong> {{ alert.start_time }}</p>
       <p class="mb-1"><strong>Valid Until:</strong> {{ alert.valid_until }}</p>
       <p class="mb-1"><strong>K Index (AUS):</strong> {{ alert.k_aus }}</p>

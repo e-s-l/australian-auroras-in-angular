@@ -40,6 +40,11 @@ export class IndexData {
           console.error('API errors:', response.errors);
         } else {
           this.kIndexEntries = response.data;
+          
+              this.kIndexEntries.forEach(entry => {
+                entry.expires = this.calculateExpiry(entry.valid_time, 3);
+              });
+
           console.log('k-index data:', this.kIndexEntries);
         }
       },
@@ -47,12 +52,6 @@ export class IndexData {
         console.error('HTTP error:', err);
       }
     });
-
-    this.kIndexEntries.forEach(entry => {
-      console.log(entry);
-      // entry.expires = `${entry.valid_time} + 3 hours`;
-    });
-
   }
 
   loadAIndexData(start: string = '', end: string = ''): void {
@@ -62,6 +61,12 @@ export class IndexData {
           console.error('API errors:', response.errors);
         } else {
           this.aIndexEntries = response.data;
+
+
+          this.aIndexEntries[0].forEach(entry => {
+              entry.expires = this.calculateExpiry(entry.valid_time, 24);
+          });
+
           console.log('a-index data:', this.aIndexEntries);
         }
       },
@@ -80,6 +85,11 @@ export class IndexData {
         } else {
           console.log(`dst - raw response: ${response}`)
           this.dstIndexEntries = response.data;
+          
+          this.dstIndexEntries[0].forEach(entry => {
+              entry.expires = this.calculateExpiry(entry.valid_time, 0);
+          });
+          
           console.log('dst index data:', this.dstIndexEntries);
         }
       },
@@ -89,7 +99,23 @@ export class IndexData {
     });
   }
 
+  calculateExpiry(dateTime: String, hours: number) {
+      if (!dateTime) return '';
 
+      // Convert "YYYY-MM-DD HH:mm:ss" to "YYYY-MM-DDTHH:mm:ss" (ISO 8601)
+      const isoString = dateTime.replace(' ', 'T');
 
+      const date = new Date(isoString);
+      if (isNaN(date.getTime())) {
+        console.warn(`Invalid date string: ${dateTime}`);
+        return '';
+      }
+
+    date.setHours(date.getHours() + hours);
+
+   // return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}:${date.getMinutes()}`;
+
+    return date.toISOString();
+  }
 
 }

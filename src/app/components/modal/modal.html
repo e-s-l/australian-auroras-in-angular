@@ -15,10 +15,14 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.close()"></button>
         </div>
         <div class="modal-body" *ngIf="(modal.content | async) as content">
-        <div *ngIf="content.notes" class="mb-3 text-muted">
-            <strong>Notes:</strong> {{ content.notes }}
-        </div>
-        <pre class="bg-light p-3 rounded"><code>{{ content.entry | json }}</code></pre>
+            <pre class="bg-light p-3 rounded"><code>{{ content.entry | json }}</code></pre>
+            <div 
+            *ngIf="content.notes" 
+            class="mb-3 text-muted" 
+            style="white-space: pre-line;">
+                 <strong>Notes:</strong>
+                 <div>{{ content.notes }}</div>
+            </div>
         </div>
     </div>
     </div>
