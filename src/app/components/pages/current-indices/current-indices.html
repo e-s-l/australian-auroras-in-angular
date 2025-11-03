@@ -1,26 +1,16 @@
-<main class="container my-4 p-4 bg-light rounded shadow">
+<main class="container my-4 p-4 bg-light shadow">
     <h2 class="mb-4 pb-2 border-bottom border-primary text-primary fw-bold">
         Current Indices
     </h2>
 
-    <div *ngIf="kIndexEntries.length && aIndexEntries.length && dstIndexEntries.length && aIndexEntries[0]?.length && dstIndexEntries[0]?.length; else loading">
-        <app-index 
-        [name]="'K'" 
-        [entry]="kIndexEntries[0]"
-        [notes]="'The estimated K-index for each station is derived from the H (or D) component of the geomagnetic field.\nAfter subtracting the local quiet background variation, the range of variation in H or D over a 3-hour interval determines K.\nWhichever component shows the largest variation in nanoTesla (nT) is assigned a value from 0 to 9 using a semi-logarithmic scale.\nEstimated K-indices for the Australian region are averages of individual station values and range from 0 to 9.'"
-
-        ></app-index>
-        <app-index 
-        [name]="'A'" 
-        [entry]="aIndexEntries[0][0]"
-        [notes]="'The A-index is the arithmetic mean of eight daily a-index values.\nThe a-index represents the latitude-adjusted amplitude equivalent (in nanoTesla) of the estimated K-index.\nIndices with the subscript p usually indicate planetary values, generated using a standard set of observatories worldwide.'"
-
-        ></app-index>
-        <app-index 
-        [name]="'DST'" 
-        [entry]="dstIndexEntries[0][0]"
-        [notes]="'The Dst-index quantifies the decrease in the geomagnetic field H-component during the main phase of magnetic storms.\nIt is mainly influenced by the ring current — an equatorial current system in the magnetosphere.\nAn Australian regional version is calculated by averaging values from low-to-mid latitude Australian stations.\nDst-index levels are color-coded to indicate storm strength: Green (Dst > -20 nT), Yellow (< -20 nT), Orange (< -50 nT), Red (< -100 nT), and Dark Red (< -200 nT).'"
-        ></app-index>
+    <div
+        *ngIf="kIndexEntries.length && aIndexEntries.length && dstIndexEntries.length && aIndexEntries[0]?.length && dstIndexEntries[0]?.length; else loading">
+        <app-index [name]="'K'" [entry]="kIndexEntries[0]"
+            [notes]="'The estimated K-index for each station is derived from the H (or D) component of the geomagnetic field.\nAfter subtracting the local quiet background variation, the range of variation in H or D over a 3-hour interval determines K.\nWhichever component shows the largest variation in nanoTesla (nT) is assigned a value from 0 to 9 using a semi-logarithmic scale.\nEstimated K-indices for the Australian region are averages of individual station values and range from 0 to 9.'"></app-index>
+        <app-index [name]="'A'" [entry]="aIndexEntries[0][0]"
+            [notes]="'The A-index is the arithmetic mean of eight daily a-index values.\nThe a-index represents the latitude-adjusted amplitude equivalent (in nanoTesla) of the estimated K-index.\nIndices with the subscript p usually indicate planetary values, generated using a standard set of observatories worldwide.'"></app-index>
+        <app-index [name]="'DST'" [entry]="dstIndexEntries[0][0]"
+            [notes]="'The Dst-index quantifies the decrease in the geomagnetic field H-component during the main phase of magnetic storms.\nIt is mainly influenced by the ring current — an equatorial current system in the magnetosphere.\nAn Australian regional version is calculated by averaging values from low-to-mid latitude Australian stations.\nDst-index levels are color-coded to indicate storm strength: Green (Dst > -20 nT), Yellow (< -20 nT), Orange (< -50 nT), Red (< -100 nT), and Dark Red (< -200 nT).'"></app-index>
     </div>
 
 </main>

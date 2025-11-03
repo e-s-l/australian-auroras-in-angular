@@ -17,6 +17,9 @@
             "polyfills": [
               "zone.js"
             ],
+            "allowedCommonJsDependencies": [
+              "plotly.js-dist-min"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -24,7 +27,7 @@
                 "input": "public"
               }
             ],
-           "styles": [
+            "styles": [
               "node_modules/bootswatch/dist/pulse/bootstrap.min.css",
               "src/styles.css"
             ],
@@ -38,7 +41,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "6MB"
                 },
                 {
                   "type": "anyComponentStyle",

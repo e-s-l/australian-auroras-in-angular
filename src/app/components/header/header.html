@@ -1,34 +1,29 @@
-<header class="bg-secondary text-white p-4 rounded mb-4 shadow-sm">
+<header class="bg-secondary text-white p-4 mb-4 shadow-sm">
   <h1 class="display-4">{{ title }}</h1>
-  <p class="lead">Oh, heavens.</p>
-  
+  <p class="lead">Oh, heavens - down under.</p>
+
   <ul class="nav nav-tabs mt-3">
     <li class="nav-item">
-      <a class="nav-link" routerLink="/current-indices" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <a class="nav-link" routerLink="/current-indices" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">
         Indices
       </a>
     </li>
     <li class="nav-item">
-      <a 
-      class="nav-link" 
-      routerLink="/current-alerts" 
-      routerLinkActive="active" 
-      [routerLinkActiveOptions]="{exact:true}"
-      [class.bg-warning-flash]="hasAlerts"
-      >
+      <a class="nav-link" routerLink="/current-alerts" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}" [class.bg-warning-flash]="hasAlerts">
         Alerts
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/historic-indices" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <a class="nav-link" routerLink="/historic-indices" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">
         Historic
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/about"
-       routerLinkActive="active" 
-       [routerLinkActiveOptions]="{exact:true}">
-      About
+      <a class="nav-link" routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        About
       </a>
     </li>
   </ul>
