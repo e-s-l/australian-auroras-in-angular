@@ -34,8 +34,9 @@
         <button type="submit" [disabled]="!startDate || !endDate" class="mb-2">Load</button>
     </form>
 
-    <plotly-plot *ngIf="plotData.length" [data]="plotData" [layout]="plotLayout" [config]="plotConfig"
-        [useResizeHandler]="true"></plotly-plot>
-
+    <div class="plot-container mt-4">
+        <plotly-plot *ngIf="plotData.length" [data]="plotData" [layout]="plotLayout" [config]="plotConfig"
+            [useResizeHandler]="true"></plotly-plot>
+    </div>
 
 </main>
